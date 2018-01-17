@@ -21,8 +21,6 @@ class _VueDialog {
             payload: {},
             template: `
                         <div class="vue-dialog-content">
-                            <header v-if="options.title"{{ options.title }}</header>
-
                             <p>{{ message }}</p>
 
                             <div class="actions">
@@ -79,7 +77,9 @@ class _VueDialog {
     // Hard confirm
     hardConfirm(message = 'To continue please type the text below', confirmationMessage = 'I really want to do it', params = {}) {
         const defaults = {
+            title: null,
             duration: 5,
+            disableLongPress: false,
             labels: {
                 ok: 'Yes, i\'m sure',
                 pressing: 'Keep pressing...',
@@ -98,7 +98,8 @@ class _VueDialog {
                                 </div>
                             </div>
                             <div class="actions">
-                                <longpress class="btn btn-danger" :disabled="!confirmed" :onConfirm="confirm" :duration="options.duration" :pressingText="options.labels.pressing" :actionText="options.labels.action">{{ options.labels.ok }}</longpress>
+                                <span class="btn btn-danger" v-if="options.disableLongPress" :disabled="!confirmed" @click="confirm()">{{ options.labels.ok }}</span>
+                                <longpress class="btn btn-danger" v-else :disabled="!confirmed" :onConfirm="confirm" :duration="options.duration" :pressingText="options.labels.pressing" :actionText="options.labels.action">{{ options.labels.ok }}</longpress>
                                 <span class="btn btn-default" @click="cancel()">{{ options.labels.cancel }}</span>
                             </div>
                         </div>
@@ -113,7 +114,7 @@ class _VueDialog {
             Bus.$emit('new', {
                 name: 'vue-dialog hard-confirm',
 
-                title: null,
+                title: options.title,
 
                 payload: options.payload,
 

@@ -26,7 +26,7 @@ VueDialog.setBus(Bus);
 
 var vm = new Vue({
 	el: '#app',
-	
+
 	components: {
         VueDialog,
         Vuedals
@@ -39,7 +39,7 @@ var vm = new Vue({
                 .catch(_ => alert('Phew..'));
         }
     },
-	
+
 	template: `<div>
         To continue, <span @click="continue()">click here</span>
 
@@ -91,7 +91,7 @@ import VueDialog from 'vue-dialog';
 VueDialog.setBus(Bus);
 ```
 
-## Usage 
+## Usage
 ```js
 import { VueDialog } from 'vuedialog';
 
@@ -150,7 +150,7 @@ Will open a confirm window with the message and the given options.
 VueDialog.hardConfirm(message[, confirmationMessage[, options]])
 ```
 
-Opens a "hard confirm" window dialog, this is a confirm in which the user has to type a given *confirmation message* and press the "im sure" button for a given amount of seconds. This is intended for really sensitive actions.
+Opens a "hard confirm" window dialog, this is a confirm in which the user has to type a given *confirmation message* and press the "im sure" button for a given amount of seconds. This is intended for really sensitive actions. The long press may be disabled if desired.
 
 ##### arguments
 | Argument                 | Type         | Default                       | Description                            |
@@ -164,6 +164,7 @@ Opens a "hard confirm" window dialog, this is a confirm in which the user has to
 ###### options
 | Option       | Type    | Default                                                                                                                | Description                                                                                         |
 |--------------|---------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **title**    | String  | null                                                                                                                   | The title of the window                                                                             |
 | **duration** | Integer | 5                                                                                                                      | How many seconds the user will need to press the confirmation button                                |
+| **disableLongPress** | Boolean | false                                                                                                          | If true, the user only needs to click the button after entering the confirmation text               |
 | **labels**   | Object  | {ok: *"Yes, i'm sure"*, cancel: *"Cancel"*, pressing: *"Keep pressing..."*, confirmed: *"Confirmed, please wait..."*} | The labels of the \<ok\> and \<cancel\> buttons, and \<pressing\>, \<confirmed\> states for the \<ok\> button |
-

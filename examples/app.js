@@ -31,6 +31,7 @@ new Vue({
         showHardConfirm() {
             Dialog.hardConfirm('Now this, is another thing, please type the text below to confirm.',
                 'I\'m pretty sure i want to do this', {
+                    title: 'Are you really sure?',
                     duration: 6,
                     labels: {
                         ok: 'Yeah, do it!',
